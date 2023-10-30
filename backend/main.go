@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -86,11 +87,18 @@ func getQuotesById(c *gin.Context) {
 			return
 		}
 	}
-	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "quotes not found"})
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Quotes not found"})
 }
 
 func main() {
 	router := gin.Default()
+
+	// CORS
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://localhost:5173"}
+	config.AllowMethods = []string{"GET", "POST", "PUT", "DELETE"}
+	router.Use(cors.New(config))
+
 	// API Routes
 	router.GET("/quotes", getQuotes)
 	router.GET("/quotes/:id", getQuotesById)
@@ -98,6 +106,7 @@ func main() {
 	router.PUT("/quotes/:id", updateQuote)
 	router.POST("/quotes", postQuotes)
 	router.DELETE("/quotes/:id", deleteQuote)
+
 	// Running server
 	router.Run(":8080")
 }
