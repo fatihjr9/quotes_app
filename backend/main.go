@@ -17,6 +17,7 @@ var collectQuotes = []quotes{
 	{ID: "1", Quote: "Lorem ipsum sit amet dolor", Author: "Yanto"},
 	{ID: "2", Quote: "Lorem ipsum sit amet dolor", Author: "Yanto"},
 	{ID: "3", Quote: "Lorem ipsum sit amet dolor", Author: "Yanto"},
+	{ID: "4", Quote: "Lorem ipsum sit amet dolor", Author: "Yanto"},
 }
 
 func getQuotes(c *gin.Context) {
